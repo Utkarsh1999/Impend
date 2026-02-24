@@ -68,13 +68,59 @@ graph TD
   - `/iosMain`: iOS specific driver/sql/platform dependencies.
 
 ## Key Features
+
 ### Free Tier
 - Manual expense entry & Category tagging
 - Mood logging (1-5 scale)
 - Weekly insights (max 3) & Basic charts
+- **Global Context**: Multi-currency support (USD, EUR, GBP, JPY, INR) and multi-lingual UI (English, Spanish).
 
 ### Pro Tier (Subscription)
 - Unlimited insights
 - Impulse Risk Score™ algorithm
 - Behavioral clustering & Anomaly detection
 - PDF export
+
+---
+
+## CI/CD & Distribution
+
+### Android Release Pipeline
+The project includes a robust GitHub Actions workflow for automated Android App Bundle (AAB) distribution to the Google Play Store.
+
+- **Workflow**: `.github/workflows/android_release.yml`
+- **Triggers**: On push to `release/*` branches or manual dispatch.
+- **Process**: 
+  - Builds signed AAB using Java 17.
+  - Automatically uploads to the **Internal Testing** track on Google Play Console.
+
+#### Required GitHub Secrets
+To enable the release pipeline, configure the following secrets in your repository:
+- `KEYSTORE_BASE64`: Base64 encoded `.jks` keystore file.
+- `KEYSTORE_PASSWORD`: Password for the keystore.
+- `KEY_ALIAS`: Alias for the signing key.
+- `KEY_PASSWORD`: Password for the signing key.
+- `PLAY_CONSOLE_JSON`: Service account JSON for Google Play API access.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Android Studio Ladybug or newer.
+- JDK 17.
+- Xcode (for iOS builds).
+
+### Running the App
+1. Clone the repository.
+2. Open in Android Studio.
+3. Sync Gradle.
+4. Run the `:composeApp` module on an emulator or physical device.
+
+---
+
+## Testing
+Run shared module tests using:
+```bash
+./gradlew :shared:allTests
+```
