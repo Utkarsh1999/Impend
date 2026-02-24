@@ -1,0 +1,9 @@
+-- Migration from v2 to v3: Adding PledgeEntity
+-- (Note: version numbering in sqm files corresponds to the next version)
+
+CREATE TABLE PledgeEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT NOT NULL,
+    endTime INTEGER NOT NULL,
+    status TEXT NOT NULL
+);

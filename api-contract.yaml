@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Impend Backend API Contract
+  description: >
+    Minimal backend API designed strictly for Authentication, Subscription Validation, 
+    and User Account Management. No raw financial data is ever transmitted or stored.
+  version: 1.0.0
+servers:
+  - url: https://api.impend.finance/v1
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: Successful registration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /auth/login:
+    post:
+      summary: Authenticate user
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /subscriptions/status:
+    get:
+      summary: Get user subscription status
+      operationId: getSubscriptionStatus
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Subscription status returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionStatus'
+  /user/preferences:
+    put:
+      summary: Sync basic preferences (theme, language)
+      description: Sync non-financial preferences across devices
+      operationId: syncPreferences
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreferences'
+      responses:
+        '200':
+          description: Preferences updated
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AuthRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    AuthResponse:
+      type: object
+      required:
+        - accessToken
+        - refreshToken
+        - user
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+    SubscriptionStatus:
+      type: object
+      required:
+        - isPro
+        - expiresAt
+      properties:
+        isPro:
+          type: boolean
+          description: Whether the user has an active Pro subscription
+        expiresAt:
+          type: string
+          format: date-time
+          description: Expiry date of the subscription
+        entitlements:
+          type: array
+          items:
+            type: string
+    UserPreferences:
+      type: object
+      properties:
+        theme:
+          type: string
+          enum: [light, dark, system]
+        language:
+          type: string
+          example: 'en-US'

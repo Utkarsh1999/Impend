@@ -1,0 +1,57 @@
+CREATE TABLE ExpenseEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    amount REAL NOT NULL,
+    category TEXT NOT NULL,
+    dateMillis INTEGER NOT NULL,
+    customTag TEXT,
+    moodScore INTEGER
+);
+
+CREATE TABLE PledgeEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT NOT NULL,
+    endTime INTEGER NOT NULL, -- Epoch millis
+    status TEXT NOT NULL -- 'ACTIVE', 'COMPLETED', 'BROKEN'
+);
+
+insertExpense:
+INSERT INTO ExpenseEntity(amount, category, dateMillis, customTag, moodScore)
+VALUES (?, ?, ?, ?, ?);
+
+getExpenseById:
+SELECT * FROM ExpenseEntity WHERE id = ?;
+
+getAllExpenses:
+SELECT * FROM ExpenseEntity ORDER BY dateMillis DESC;
+
+deleteExpenseById:
+DELETE FROM ExpenseEntity WHERE id = ?;
+
+clearAllExpenses:
+DELETE FROM ExpenseEntity;
+
+-- Pledge Queries
+insertPledge:
+INSERT INTO PledgeEntity(category, endTime, status)
+VALUES (?, ?, ?);
+
+getActivePledgeForCategory:
+SELECT * FROM PledgeEntity 
+WHERE category = ? AND status = 'ACTIVE' AND endTime > ?
+LIMIT 1;
+
+getAllPledges:
+SELECT * FROM PledgeEntity ORDER BY endTime DESC;
+
+updatePledgeStatus:
+UPDATE PledgeEntity SET status = ? WHERE id = ?;
+
+getExpensesInRange:
+SELECT * FROM ExpenseEntity 
+WHERE dateMillis >= ? AND dateMillis <= ? 
+ORDER BY dateMillis ASC;
+
+getPledgeSummaryStats:
+SELECT status, COUNT(*) AS pledgeCount 
+FROM PledgeEntity 
+GROUP BY status;

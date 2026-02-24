@@ -1,0 +1,33 @@
+CREATE TABLE CircleEntity (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    memberCount INTEGER DEFAULT 0,
+    groupSuccessRate REAL DEFAULT 0.0,
+    isJoined INTEGER DEFAULT 0
+);
+
+CREATE TABLE CircleMemberEntity (
+    circleId TEXT NOT NULL,
+    anonymousId TEXT NOT NULL,
+    PRIMARY KEY (circleId, anonymousId)
+);
+
+getAllCircles:
+SELECT * FROM CircleEntity;
+
+getJoinedCircles:
+SELECT * FROM CircleEntity WHERE isJoined = 1;
+
+joinCircle:
+UPDATE CircleEntity SET isJoined = 1 WHERE id = ?;
+
+leaveCircle:
+UPDATE CircleEntity SET isJoined = 0 WHERE id = ?;
+
+updateCircleStats:
+UPDATE CircleEntity SET memberCount = ?, groupSuccessRate = ? WHERE id = ?;
+
+insertCircle:
+INSERT OR REPLACE INTO CircleEntity (id, name, description, memberCount, groupSuccessRate, isJoined)
+VALUES (?, ?, ?, ?, ?, ?);
