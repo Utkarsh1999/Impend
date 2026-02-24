@@ -1,0 +1,17 @@
+-- Migration from v3 to v4: Adding CircleEntity and CircleMemberEntity
+-- This ensures existing databases are updated with the social resilience tables.
+
+CREATE TABLE CircleEntity (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    memberCount INTEGER DEFAULT 0,
+    groupSuccessRate REAL DEFAULT 0.0,
+    isJoined INTEGER DEFAULT 0
+);
+
+CREATE TABLE CircleMemberEntity (
+    circleId TEXT NOT NULL,
+    anonymousId TEXT NOT NULL,
+    PRIMARY KEY (circleId, anonymousId)
+);

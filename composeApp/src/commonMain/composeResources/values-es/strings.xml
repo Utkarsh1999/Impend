@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Impend</string>
+    <string name="nav_home">Inicio</string>
+    <string name="nav_trends">Tendencias</string>
+    <string name="nav_add">Añadir</string>
+    <string name="nav_circles">Círculos</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <string name="dashboard_overview_title">Tu Resumen</string>
+    <string name="dashboard_overview_subtitle">Salud financiera lógica</string>
+    <string name="dashboard_risk_score">Riesgo de Impulso™</string>
+    <string name="dashboard_risk_high">Alto Riesgo ⚠️</string>
+    <string name="dashboard_risk_stable">Estable ✅</string>
+    <string name="dashboard_spent">Gastado</string>
+    <string name="dashboard_mood_pulse">Pulso de Ánimo</string>
+    <string name="dashboard_mood_positive">Positivo</string>
+    <string name="dashboard_mood_stress">Estrés</string>
+    <string name="dashboard_mood_neutral">Neutral</string>
+    <string name="dashboard_coaching_insights">Consejos de Coaching</string>
+    <string name="dashboard_recent_activity">Actividad Reciente</string>
+    
+    <string name="settings_title">Ajustes y Perfil</string>
+    <string name="settings_done">Listo</string>
+    <string name="settings_section_account">Cuenta</string>
+    <string name="settings_anonymous_id">ID Anónimo</string>
+    <string name="settings_identity_desc">Tu identidad es 100% encriptada y local.</string>
+    <string name="settings_section_preferences">Preferencias</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_currency">Moneda</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_notif_val">Solo Alertas de Riesgo</string>
+    <string name="settings_section_security">Seguridad</string>
+    <string name="settings_clear_data">Borrar Todos los Datos</string>
+    <string name="settings_dialog_wipe_title">¿Borrar Todo?</string>
+    <string name="settings_dialog_wipe_desc">Esto eliminará permanentemente todos tus gastos, compromisos e historial de comportamiento. Esta acción no se puede deshacer.</string>
+    <string name="settings_dialog_wipe_confirm">SÍ, BORRAR TODO</string>
+    <string name="settings_dialog_cancel">CANCELAR</string>
+</resources>

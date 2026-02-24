@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.impend.app.composeApp-mergeReleaseResources-51:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/Users/utkarsh/.gradle/caches/8.11.1/transforms/2201af46100877d459d5f6782e21ec01/transformed/appcompat-1.7.0/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
